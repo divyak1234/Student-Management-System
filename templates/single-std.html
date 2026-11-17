@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+
+    <style>
+        body {
+            background-color: #f0f5ff;
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        .card {
+            width: 350px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 5px 5px 10px lightgray;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: navy;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        a {
+            display: inline-block;
+            background-color: navy;
+            color: white;
+            padding: 9px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h2>Student Details</h2>
+
+        {% if std %}
+
+            <img src="{{std[6]}}">
+
+            <h3>Name : {{std[1]}}</h3>
+            <h3>Age : {{std[2]}}</h3>
+            <h3>Gender : {{std[3]}}</h3>
+            <h3>Marks : {{std[4]}}</h3>
+            <h3>Course : {{std[5]}}</h3>
+
+            {% if std[7] %}
+                <h3 style="color: green;">Present</h3>
+            {% else %}
+                <h3 style="color: red;">Absent</h3>
+            {% endif %}
+
+        {% else %}
+
+            <h3>Student not found!</h3>
+
+        {% endif %}
+
+        <a href="/">Back to Home</a>
+
+    </div>
+
+</body>
+</html>

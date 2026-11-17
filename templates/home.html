@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+        
+        body {
+            background-color: #aed9ed;
+            font-family: Arial;
+            margin: 20px;
+            padding: 10px;
+        }
+        .header {
+            background-color: #a5d4e7;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #831843;
+        }
+
+        .header p {
+            color: #9d174d;
+        }
+
+        .add {
+            display: inline-block;
+            background-color: #7c52fa;
+            color: white;
+            padding: 11px 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .card {
+            width: 250px;
+            min-height: 470px;
+            padding: 15px;
+            background-color: white;
+            border: 2px solid #fbcfe8;
+            border-radius: 15px;
+            box-shadow: 2px 3px 8px #e9c5d5;
+        }
+
+        .card:hover {
+            box-shadow: 3px 6px 12px #b4e1ed;
+        }
+
+        .img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .card h2 {
+            font-size: 19px;
+            color: #4c1d95;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        .present {
+            background-color: #dcfce7;
+            color: green;
+        }
+
+        .absent {
+            background-color: #fee2e2;
+            color: red;
+        }
+
+        .view {
+            display: inline-block;
+            color: #9333ea;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #d32b2b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ec4899;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h2>Student Management</h2>
+
+    <a class="add" href="/students/add">+ Add Student</a>
+
+    <div class="container">
+
+        {% for std in stds %}
+
+            <div class="card">
+
+                <img class="img" src="{{std[6]}}">
+
+                <h2>Name : {{std[1]}}</h2>
+                <h2>Age : {{std[2]}}</h2>
+                <h2>Gender : {{std[3]}}</h2>
+                <h2>Marks : {{std[4]}}</h2>
+                <h2>Course : {{std[5]}}</h2>
+
+                {% if std[7] %}
+                    <p style="color: green;">Present</p>
+                {% else %}
+                    <p style="color: red;">Absent</p>
+                {% endif %}
+
+                <a class="view" href="/students/{{std[0]}}">View</a> <br>
+        
+
+                
+                <a href="/students/edit/{{ std[0] }}" class="edit-btn"> Edit</a>
+
+
+                <form action="/std/delete/{{std[0]}}" method="post">
+                    <button>Delete</button>
+                </form>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
