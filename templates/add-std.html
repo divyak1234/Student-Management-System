@@ -1,45 +1,142 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Student</title>
+
+    <style>
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
+            font-family: Arial;
+            margin: 0;
+            padding: 30px;
+            min-height: 100vh;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            color: #c4b5fd;
+            margin-bottom: 25px;
+        }
+
+        form {
+            width: 400px;
+            max-width: 100%;
+            margin: auto;
+            padding: 25px;
+            background-color: rgba(255,255,255,0.09);
+            border: 1px solid #6366f1;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e7ff;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #64748b;
+            border-radius: 7px;
+            background-color: #1e1b4b;
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 5px #818cf8;
+        }
+
+        input::placeholder {
+            color: #a5b4fc;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(90deg, #6366f1, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #4f46e5, #7e22ce);
+            transform: translateY(-3px);
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #93c5fd;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-    <h2>Add Student</h2>
+    <h2>✨ Add Student</h2>
 
     <form action="/students/add" method="post">
 
         <label>Name:</label>
-        <input type="text" name="name" placeholder="Enter name" required >
-        <br>
+        <input type="text" name="name"
+               placeholder="Enter name" required>
 
         <label>Age:</label>
-        <input type="number" name="age" placeholder="Enter age" required >
-        <br>
+        <input type="number" name="age"
+               placeholder="Enter age" required>
+
         <label>Gender:</label>
-        <input type="text" name="gender" placeholder="Enter gender" required >
-        <br>
+        <input type="text" name="gender"
+               placeholder="Enter gender" required>
+
         <label>Marks:</label>
-        <input type="number" name="marks" placeholder="Enter marks" required >
-        <br>
+        <input type="number" name="marks"
+               placeholder="Enter marks" required>
+
         <label>Course:</label>
-        <input type="text" name="course" placeholder="Enter course" required >
-        <br>
+        <input type="text" name="course"
+               placeholder="Enter course" required>
+
         <label>Image:</label>
-        <input type="text" name="image" placeholder="Enter url" required >
-        <br>
+        <input type="text" name="image"
+               placeholder="Enter url" required>
+
         <label>Attendance:</label>
+
         <select name="status">
             <option value="1">Present</option>
             <option value="0">Absent</option>
         </select>
 
-        <br>
-
         <button type="submit">Add Student</button>
+
+        <a class="back" href="/">← Back to Home</a>
 
     </form>
 

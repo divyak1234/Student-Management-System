@@ -6,9 +6,15 @@ from fastapi.responses import RedirectResponse
 
 import sqlite3
 
+
+# DATABASE CONNECTION
+
 def get_conn():
     connection = sqlite3.connect("students0.db")
     return connection
+
+
+# CREATE TABLE
 
 def create_tb():
     connection = get_conn()
@@ -31,8 +37,11 @@ def create_tb():
     connection.commit()
     connection.close()
 
+
 create_tb()
 
+
+# TEMPLATES
 
 templates = Jinja2Templates(
     directory="templates"
@@ -41,8 +50,10 @@ templates = Jinja2Templates(
 app = FastAPI()
 
 
+# PYDANTIC MODEL
+
 class Student(BaseModel):
-    name: str = Field(max_length=20, min_length=4)
+    name: str = Field(max_length=20, min_length=3)
     age: int = Field(ge=20, le=60)
     gender: str
     marks: int = Field(ge=21, le=100)
@@ -50,6 +61,8 @@ class Student(BaseModel):
     image: str
     status: int = Field(ge=0, le=1)
 
+
+# HOME PAGE
 
 @app.get("/")
 def home(req: Request):
@@ -71,6 +84,8 @@ def home(req: Request):
     )
 
 
+# ADD STUDENT FORM
+
 @app.get("/students/add")
 def send_std_form(req: Request):
 
@@ -80,6 +95,8 @@ def send_std_form(req: Request):
         context={}
     )
 
+
+# SINGLE STUDENT DETAILS
 
 @app.get("/students/{std_id}")
 def get_student(req: Request, std_id: int):
@@ -103,6 +120,9 @@ def get_student(req: Request, std_id: int):
         context={"std": students0}
     )
 
+
+# DELETE STUDENT
+
 @app.post("/std/delete/{std_id}")
 def delete_std(std_id: int):
 
@@ -121,6 +141,8 @@ def delete_std(std_id: int):
         status_code=303
     )
 
+
+# ADD STUDENT
 
 @app.post("/students/add")
 def create_std(
@@ -173,6 +195,8 @@ def create_std(
     )
 
 
+# EDIT STUDENT FORM
+
 @app.get("/students/edit/{std_id}")
 def edit_std(req: Request, std_id: int):
 
@@ -197,9 +221,11 @@ def edit_std(req: Request, std_id: int):
     )
 
 
+# UPDATE STUDENT
+
 @app.post("/students/edit/{std_id}")
 def update_std(
-    std_id : int,
+    std_id: int,
     name: str = Form(),
     age: int = Form(),
     gender: str = Form(),
@@ -219,23 +245,34 @@ def update_std(
         status=status
     )
 
-
     connection = get_conn()
     cursor = connection.cursor()
 
     q = """
     UPDATE students0
     SET name = ?,
-    age =?,
-    gender = ?,
-    marks = ?,
-    course = ?,
-    image = ?,
-    status = ? where id = ?
+        age = ?,
+        gender = ?,
+        marks = ?,
+        course = ?,
+        image = ?,
+        status = ?
+    WHERE id = ?
     """
-    cursor.execute(q, (std_id,Student_obj.name,Student_obj.age,Student_obj.gender,Student_obj.marks,Student_obj.course,Student_obj.image,Student_obj.status))
-    
-    
+
+    values = (
+        Student_obj.name,
+        Student_obj.age,
+        Student_obj.gender,
+        Student_obj.marks,
+        Student_obj.course,
+        Student_obj.image,
+        Student_obj.status,
+        std_id
+    )
+
+    cursor.execute(q, values)
+
     connection.commit()
     connection.close()
 

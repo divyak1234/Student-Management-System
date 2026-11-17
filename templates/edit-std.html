@@ -1,11 +1,75 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Student</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
+            font-family: Arial;
+            color: white;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #c4b5fd;
+        }
+
+        form {
+            width: 400px;
+            max-width: 100%;
+            margin: auto;
+            padding: 25px;
+            background: rgba(255,255,255,0.09);
+            border: 1px solid #818cf8;
+            border-radius: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px;
+            margin-bottom: 18px;
+            border: 1px solid #64748b;
+            border-radius: 7px;
+            background: #1e1b4b;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #6366f1, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7c3aed;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #93c5fd;
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body>
 
     <h2>Edit Student {{ std[1] }}</h2>
@@ -14,37 +78,41 @@
 
         <label>Name:</label>
         <input type="text" name="name" required value="{{std[1]}}">
-        <br><br>
 
         <label>Age:</label>
         <input type="number" name="age" required value="{{std[2]}}">
-        <br><br>
+
         <label>Gender:</label>
         <input type="text" name="gender" required value="{{std[3]}}">
-        <br><br>
+
         <label>Marks:</label>
         <input type="number" name="marks" required value="{{std[4]}}">
-        <br><br>
 
         <label>Course:</label>
         <input type="text" name="course" required value="{{std[5]}}">
-        <br><br>
 
         <label>Image:</label>
         <input type="text" name="image" required value="{{std[6]}}">
-        <br><br>
 
         <label>Attendance:</label>
-        <select name="status">
-            <option value="1" {% if std[7] == 1 %}selected{% endif %}>Present</option>
-            <option value="0" {% if std[7] == 0 %}selected{% endif %}>Absent</option>
-        </select>
 
-        <br><br>
+        <select name="status">
+
+            <option value="1" {% if std[7] == 1 %}selected{% endif %}>
+                Present
+            </option>
+
+            <option value="0" {% if std[7] == 0 %}selected{% endif %}>
+                Absent
+            </option>
+
+        </select>
 
         <button type="submit">Update Student</button>
 
     </form>
+
+    <a href="/">Back to Home</a>
 
 </body>
 </html>

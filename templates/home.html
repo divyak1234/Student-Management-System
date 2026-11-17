@@ -1,120 +1,265 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+
+    <title>Student Management</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        
-        body {
-            background-color: #aed9ed;
-            font-family: Arial;
-            margin: 20px;
-            padding: 10px;
+
+        * {
+            box-sizing: border-box;
         }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 25px;
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* HEADER */
+
         .header {
-            background-color: #a5d4e7;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            background: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 15px;
+            margin-bottom: 28px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .header h1 {
-            color: #831843;
+            color: #c4b5fd;
+            margin: 0;
+            font-size: 26px;
         }
 
-        .header p {
-            color: #9d174d;
-        }
+        /* ADD BUTTON */
 
         .add {
             display: inline-block;
-            background-color: #7c52fa;
+            background: linear-gradient(135deg, #6366f1, #9333ea);
             color: white;
-            padding: 11px 18px;
+            padding: 12px 19px;
             text-decoration: none;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
+            border-radius: 9px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
         }
 
+        .add:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px #6366f1;
+        }
+
+        /* STUDENT CONTAINER */
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 290px);
+            justify-content: center;
+            gap: 22px;
+        }
+
+        /* STUDENT CARD */
+
         .card {
-            width: 250px;
-            min-height: 470px;
-            padding: 15px;
-            background-color: white;
-            border: 2px solid #fbcfe8;
-            border-radius: 15px;
-            box-shadow: 2px 3px 8px #e9c5d5;
+            width: 290px;
+            min-height: 0;
+            padding: 16px;
+            background: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
 
         .card:hover {
-            box-shadow: 3px 6px 12px #b4e1ed;
+            transform: translateY(-5px);
+            border-color: #818cf8;
+            box-shadow: 0 10px 22px rgba(99,102,241,0.3);
         }
+
+        /* STUDENT IMAGE */
 
         .img {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             object-fit: cover;
             border-radius: 12px;
+            display: block;
+            margin: 0 auto 16px;
+            border: 3px solid #818cf8;
         }
 
+        /* STUDENT DETAILS */
+
         .card h2 {
-            font-size: 19px;
-            color: #4c1d95;
+            font-size: 14px;
+            color: #e0e7ff;
+            background: rgba(15,23,42,0.4);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 9px 0;
+            font-weight: 500;
+            overflow-wrap: anywhere;
         }
+
+        /* ATTENDANCE */
 
         .status {
             display: inline-block;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 14px;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 9px 0;
         }
 
         .present {
-            background-color: #dcfce7;
-            color: green;
+            background: #14532d;
+            color: #bbf7d0;
         }
 
         .absent {
-            background-color: #fee2e2;
-            color: red;
+            background: #7f1d1d;
+            color: #fecaca;
+        }
+
+        /* ACTION BUTTONS */
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .actions form {
+            margin: 0;
         }
 
         .view {
             display: inline-block;
-            color: #9333ea;
+            color: #93c5fd;
+            background: rgba(59,130,246,0.15);
             text-decoration: none;
-            margin: 10px 0;
+            padding: 9px 14px;
+            border-radius: 7px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .view:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        .edit-btn {
+            display: inline-block;
+            color: #e9d5ff;
+            background: rgba(147,51,234,0.2);
+            text-decoration: none;
+            padding: 9px 14px;
+            border-radius: 7px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .edit-btn:hover {
+            background: #9333ea;
+            color: white;
         }
 
         button {
-            background-color: #d32b2b;
+            background: #dc2626;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 9px 14px;
             border-radius: 7px;
             cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            transition: 0.3s;
         }
 
         button:hover {
-            background-color: #ec4899;
+            background: #991b1b;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            color: #a5b4fc;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media(max-width: 1300px) {
+
+            .container {
+                grid-template-columns: repeat(2, 290px);
+            }
+
+        }
+
+        @media(max-width: 650px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .container {
+                grid-template-columns: minmax(0, 290px);
+            }
+
         }
 
     </style>
+
 </head>
 
 <body>
 
-    <h2>Student Management</h2>
+    <!-- HEADER -->
 
-    <a class="add" href="/students/add">+ Add Student</a>
+    <div class="header">
+
+        <div>
+            <h1>Student Management</h1>
+        </div>
+
+        <a class="add" href="/students/add">
+            + Add Student
+        </a>
+
+    </div>
+
+
+    <!-- STUDENT CARDS -->
 
     <div class="container">
 
@@ -122,35 +267,51 @@
 
             <div class="card">
 
-                <img class="img" src="{{std[6]}}">
+                <img class="img" src="{{std[6]}}" alt="Student Image">
 
                 <h2>Name : {{std[1]}}</h2>
+
                 <h2>Age : {{std[2]}}</h2>
+
                 <h2>Gender : {{std[3]}}</h2>
+
                 <h2>Marks : {{std[4]}}</h2>
+
                 <h2>Course : {{std[5]}}</h2>
 
                 {% if std[7] %}
-                    <p style="color: green;">Present</p>
+                    <span class="status present">● Present</span>
                 {% else %}
-                    <p style="color: red;">Absent</p>
+                    <span class="status absent">● Absent</span>
                 {% endif %}
 
-                <a class="view" href="/students/{{std[0]}}">View</a> <br>
-        
+                <div class="actions">
 
-                
-                <a href="/students/edit/{{ std[0] }}" class="edit-btn"> Edit</a>
+                    <a class="view" href="/students/{{std[0]}}">
+                        View
+                    </a>
 
+                    <a href="/students/edit/{{std[0]}}" class="edit-btn">
+                        Edit
+                    </a>
 
-                <form action="/std/delete/{{std[0]}}" method="post">
-                    <button>Delete</button>
-                </form>
+                    <form action="/std/delete/{{std[0]}}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+
+                </div>
 
             </div>
 
         {% endfor %}
 
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+        Student Management System
     </div>
 
 </body>
